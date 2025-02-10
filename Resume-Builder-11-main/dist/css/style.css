@@ -855,3 +855,27 @@ body {
 .menu.collapsed .menu-toggle {
     transform: rotate(180deg);
 }
+
+/* Add these styles at the end of your style.css file */
+@media print {
+    #resume-container {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 20mm;
+        margin: 0;
+        background: white;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Ensure the resume container has proper styling */
+#resume-container {
+    background: white;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
