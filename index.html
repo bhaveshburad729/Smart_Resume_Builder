@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <!-- CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/bulma.min.css">
+    <link rel="stylesheet" href="./dist/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- JS -->
+    <script src="./dist/js/index.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Add after your existing CSS links -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Lato:wght@400;700&family=Nunito:wght@400;600;700&family=Merriweather:wght@400;700&family=Crimson+Text:wght@400;600;700&family=Spectral:wght@400;500;600&family=Lora:wght@400;500;600&family=Source+Serif+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Josefin+Sans:wght@400;600;700&family=Quicksand:wght@400;500;600;700&family=Comfortaa:wght@400;500;600;700&family=Overpass:wght@400;600;700&family=Urbanist:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add this before closing </head> tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <!-- Add after your existing font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add in the head section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://unpkg.com/docx@7.8.2/build/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <!-- <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div> -->
+
+        <!-- <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    Home
+                </a>
+
+                <a class="navbar-item">
+                    Documentation
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            Report an issue
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </nav>
+
+    <section class="section p-0 fixed-below">
+        <div class="columns mb-3 is-hidden-mobile">
+            <div class="column is-2 has-background-light scroller pb-5" style="width: 230px !important;">
+                <aside class="menu">
+                    <ul class="menu-list">
+                        <li id="edit"><a class="has-text-weight-bold has-background-link-light"><i
+                                    class="fa-solid fa-pen-to-square mr-2"></i>Edit Section</a></li>
+                        <li>
+                            <ul id="menubuttons">
+                                <li id="0"><a href="#div-input-0" class="has-text-weight-semibold"> <i
+                                            class="mr-2 fa-solid fa-user"></i>
+                                        Personal</a></li>
+                                <li id="1"><a href="#div-input-1" class="has-text-weight-semibold"><i
+                                            class="mr-2 fa-solid fa-user-tie"></i>Proffesional</a></li>
+                                <li id="2"><a href="#div-input-2" class="has-text-weight-semibold"><i
+                                            class="fa-solid fa-graduation-cap mr-2"></i>Education</a></li>
+                                <li id="3"><a href="#div-input-3" class="has-text-weight-semibold"><i
+                                            class="fa-solid fa-rectangle-list mr-1"></i> Key Skills</a></li>
+                                <li class="is-hidden" id="4"><a href="#div-input-4"
+                                        class="has-text-weight-semibold is-inline-block"><i
+                                            class="fa-solid fa-lightbulb mr-2"></i>Tech Skills</a>
+                                    <i class="fa-solid fa-trash mt-3 has-text-danger delete-button"
+                                        style="float: right;" id="delete4" style="float: right;"></i>
+                                </li>
+                                <li id="5">
+                                    <a href="#div-input-5" class="has-text-weight-semibold"><i
+                                            class="fa-solid fa-language mr-1"></i>Languages</a>
+                                </li>
+                                <li class="is-hidden" id="6"><a href="#div-input-6" class="has-text-weight-semibold">
+                                        <i class="fa-solid fa-certificate mr-2"></i>Certifications</a></li>
+                                <li class="is-hidden" id="7"><a href="#div-input-7"
+                                        class="has-text-weight-semibold  is-inline-block">
+                                        <i class="fa-solid fa-star mr-2"></i>Milestones</a>
+                                    <i class="fa-solid fa-trash mt-3 has-text-danger delete-button"
+                                        style="float: right;" id="delete7" style="float: right;"></i>
+                                </li>
+                                <li class="is-hidden" id="8"><a href="#div-input-8"
+                                        class="has-text-weight-semibold  is-inline-block"><i
+                                            class="fa-brands fa-uncharted mr-2"></i>Projects</a>
+                                    <i class="fa-solid fa-trash mt-3 has-text-danger delete-button"
+                                        style="float: right;" id="delete8" style="float: right;"></i>
+                                </li>
+                                <li class="" id="9"><a href="#div-input-9"
+                                        class="has-text-weight-semibold is-inline-block">
+                                        <i class="fa-solid fa-heart mr-2"></i>Hobbies</a>
+                                </li>
+                                <li id="10" class="is-hidden"><a href="#div-input-10"
+                                        class="has-text-weight-semibold is-inline-block"><i
+                                            class="fa-solid fa-book mr-2"></i>Publications</a>
+                                    <i class="fa-solid fa-trash mt-3 has-text-danger delete-button  is-ghost"
+                                        style="float: right;" id="delete10" style="float: right;"></i>
+                                </li>
+                                <li class="is-hidden" id="11"><a href="#div-input-11"
+                                        class="has-text-weight-semibold is-inline-block "><i
+                                            class="fa-brands fa-searchengin mr-2"></i>Research</a>
+                                    <i class="fa-solid fa-trash mt-3 has-text-danger delete-button"
+                                        style="float: right;" id="delete11" style="float: right;"></i>
+                                </li>
+                                <li class="is-hidden" id="12"><a href="#div-input-12"
+                                        class="has-text-weight-semibold is-inline-block">Custom Section</a>
+                                    <i class="fa-solid fa-trash mt-3 has-text-danger delete-button"
+                                        style="float: right;" id="delete12" style="float: right;"></i>
+                                </li>
+                                <li class="is-hidden" id="13">
+                                    <a href="#div-input-13"
+                                        class="has-text-weight-semibold is-inline-block">Declaration</a>
+                                    <i class="fa-solid fa-trash has-text-danger mt-3 delete-button" id="delete13"
+                                        style="float: right;"></i>
+                                </li>
+                                <li>
+                                    <a href="#additional-content-container"
+                                        class="has-text-weight-semibold is-inline-block">+ Additional</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class=" menu-list">
+                        <li>
+                            <a onclick="showTemplates()">
+                                <i class="fa-solid fa-file mr-2"></i>
+                                <span>Templates</span>
+                            </a>
+                        </li>
+                        <li><a><i class="fa-solid fa-layer-group mr-2"></i>Rearrange</a></li>
+                        <li>
+                            <a id="compress-docs-btn" onclick="showCompressionDialog()">
+                                <i class="fa-solid fa-compress mr-2"></i>
+                                <span>Compress Files</span>
+                                <span class="tag is-info is-light ml-2">New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="interview-prep-btn" onclick="showInterviewPrep()">
+                                <i class="fa-solid fa-comments mr-2"></i>
+                                <span>Interview Prep</span>
+                                <span class="tag is-success is-light ml-2">AI Powered</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="showDownloadOptions()">
+                                <i class="fa-solid fa-download mr-2"></i>
+                                <span>Download Resume</span>
+                            </a>
+                        </li>
+                        <li><a href="#" title="Share" onclick="shareResume(); return false;"><i class="fa-solid fa-share mr-2"></i>Share</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <!-- User Deails Container -->
+            <div class="column mb-5 box scroller is-4 mx-3 has-background-white" id="userdetails">
+                <!-- 1 Personal Information Input -->
+                <div class="container" id="div-input-0">
+                    <a href="#div-result-0" class="is-hidden" id="redirect0"></a>
+                    <div class="columns" id="personal-info-section">
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5">Personal
+                                Information</h2>
+                            <span class="has-text-grey">Enter your precise personal details to build a complete and
+                                compelling profile.
+                            </span>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button customcolor collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div0">
+                        <div class="columns">
+                            <div class="column is-6">
+                                <div>
+                                    <span>Profile Photo</span>
+                                    <input type="checkbox" id="imageswitch" checked class="checkbox" />
+                                    <label for="imageswitch" class="toggle-checkbox">
+                                </div>
+                                <div class="file">
+                                    <label class="file-label">
+                                        <input class="file-input" id="userimage" type="file">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                Choose a file…
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="column is-6">
+                                <span>Job Title</span>
+                                <input type="text" id="profile-job-title" placeholder="Software Engineer" class="input">
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <span>First Name</span>
+                                <input type="text" id="firstname" placeholder="Shubham" class="input">
+                            </div>
+                            <div class="column">
+                                <span>Last Name</span>
+                                <input type="text" id="lastname" placeholder="Somwanshi" class="input">
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <span>Date of Birth </span>
+                                <input type="date" id="dob" class="input">
+                            </div>
+                            <div class="column">
+                                <span>Phone</span>
+                                <div class="is-flex">
+                                    <div class="select p-0">
+                                        <select name="" id="countrycode">
+                                            <option value="91">+91</option>
+                                            <option value="1">+1</option>
+                                            <option value="+11">+611</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" id="phone" class="input p-0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns">
+                            <div class="column">
+                                <span>Email</span>
+                                <input type="email" name="" id="email" class="input">
+                            </div>
+                            <div class="column">
+                                <span>Work Mail</span>
+                                <input type="email" name="" id="" class="input">
+                            </div>
+                        </div>
+                        <span>Address</span>
+                        <input type="text" class="input" id="address">
+
+                        <div class="columns">
+                            <div class="column">
+                                <span>City</span>
+                                <input type="text" id="city" class="input">
+                            </div>
+                            <div class="column">
+                                <span>Postal Code</span>
+                                <input type="text" id="postalcode" class="input">
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <span>State</span>
+                                <input type="text" id="state" class="input">
+                            </div>
+                            <div class="column">
+                                <span>Country</span>
+                                <input type="text" id="country" class="input">
+                            </div>
+                        </div>
+                        <span>Write Something about yourself</span>
+                        <div class="field">
+                            <div class="co  ntrol">
+                                <div id="user-description" class="textarea"></div>
+                            </div>
+                        </div>
+                        </script>
+                        <div>
+                            <table class="table" id="social">
+                                <tr id="social0">
+                                    <td>
+                                        <span>Link For</span>
+                                        <input type="text" id="social-link-for0" placeholder="LinkedIn" class="input">
+                                    </td>
+                                    <td>
+                                        <span>URL</span>
+                                        <input type="url" id="social-link0" class="input">
+                                    </td>
+                                    <td>
+                                        <span>Text</span>
+                                        <input type="url" id="texttoshow0" class="input">
+                                    </td>
+                                    <td>
+                                        <button class="button is-danger is-hidden"
+                                            onclick="RemoveSubSection('social0','social')">X</button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <button class="button is-ghost mt-3" onclick="Newsubsection('social0','social')">+ Add
+                                Social Media Links</button>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 2 Proffesional Information Input -->
+                <div class="container" id="div-input-1">
+                    <a href="#div-result-1" class="is-hidden" id="redirect1"></a>
+
+                    <div class="columns" id="experience-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" id="switch1" checked class="checkbox showcontent" />
+
+                                <label for="switch1" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-inline-block is-size-5" id="title-1"
+                                contenteditable="true">
+                                Proffesional Experince
+                            </h2>
+                            <p class="has-text-grey">Capture your professional journey with relevant work
+                                experiences..</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button  collapse is-ghost has-background-white "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="content" id="div1">
+                        <div id="proffesional">
+                            <div id="proffesional0">
+                                <div class="mb-4">
+                                    <div class="columns is-hidden">
+                                        <div class="column">
+                                            <h2 class="is-size-5" id="componyname0">Compony 0</h2>
+                                        </div>
+                                        <div class="column has-text-right">
+                                            <button class="button is-ghost"
+                                                onclick="RemoveSubSection('proffesional0','proffesional')">Remove</button>
+                                        </div>
+                                    </div>
+                                    <div class="columns">
+                                        <div class="column"><span>
+                                                Compony
+                                                <input type="text" name="compony0" id="compony0" class="input">
+                                            </span>
+                                        </div>
+                                        <div class="column">
+                                            <span>Job Title</span>
+                                            <input type="text" name="job-title0" placeholder="Software Engineer"
+                                                id="job-title0" class="input">
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column"><span>Start Date</span>
+                                            <input type="month" name="job-start-date0" id="job-start-date0"
+                                                class="input">
+                                        </div>
+                                        <div class="column"><span>End Date</span>
+                                            <input type="month" name="job-end-date0" id="job-end-date0" class="input">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="current-job0" name="current-job0">
+                                                <span class="slider round">Currenty Working here</span>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span>Write about your roles and responcebilities in Job role </span>
+                                        <div class="field">
+                                            <div class="control">
+                                                <div id="proffesional-description0" name="proffesional-description0"
+                                                    class="textarea">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('proffesional0','proffesional')">+ Add
+                            more work
+                            experince</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 3 Educational Information Input -->
+                <div class="container" id="div-input-2">
+                    <a href="#div-result-2" class="is-hidden" id="redirect2"></a>
+
+                    <div class="columns" id="education-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch2" class="checkbox showcontent" />
+
+                                <label for="switch2" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5 is-inline-block" id="title-2"
+                                contenteditable="true">Education</h2>
+                            <p class="has-text-grey">Include your educational background.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="content" id="div2">
+                        <div id="educational">
+                            <div id="educational0" class="mb-4">
+                                <div class="columns is-hidden">
+                                    <div class="column">
+                                        <h2 class="is-size-5" id="institute0">Institute 0</h2>
+                                    </div>
+                                    <div class="column has-text-right ">
+                                        <button class="button is-ghost"
+                                            onclick="RemoveSubSection('educational0','educational')">Remove</button>
+                                    </div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <span>Degree</span>
+                                        <input type="text" name="institute-degree0" id="institute-degree0" class="input"
+                                            placeholder="eg. Engineering">
+                                    </div>
+                                    <div class="column">
+                                        <span>In</span>
+                                        <input type="text" id="institute-education0" name="institute-education0"
+                                            class="input" placeholder="eg. Computer Science">
+                                    </div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <span>Institute Name</span>
+                                        <input type="text" id="institute-name0" name="institute-name0"
+                                            placeholder="JSPM's BSIOTR" class="input">
+                                    </div>
+                                    <div class="column">
+                                        <span>Institute Location</span>
+                                        <input type="text" id="institute-location0" name="institute-location0"
+                                            class="input" placeholder="Wagholi, Pune">
+                                    </div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <span>Start Date</span>
+                                        <input type="month" name="institute-start-date0" id="institute-start-date0"
+                                            class="input">
+
+                                    </div>
+                                    <div class="column">
+                                        <span>End Date</span>
+                                        <input type="month" name="institute-end-date0" id="institute-end-date0"
+                                            class="input">
+                                        <label class="toggle">
+                                            <input type="checkbox" id="current-institute0" name="current-institute0">
+                                            <span class="slider round">I
+                                                Currenty Study here</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div>
+                                            <span>Grades In </span>
+                                        </div>
+                                        <div class="select">
+                                            <select name="" id="institute-grade-in0">
+                                                <option value="%">Percentage</option>
+                                                <option value="CGPA">CGPA</option>
+                                                <option value="SGPA">SGPA</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <span>Grades </span>
+                                        <input type="text" name="institute-grade0" id="institute-grade0" class="input">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span>Description</span>
+                                    <div class="field">
+                                        <div class="control">
+                                            <div id="institute-description0" name="institute-description0"
+                                                class="textarea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('educational0','educational')">+
+                            Add
+                            more
+                            education</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 4 Key Skills Input -->
+                <div class="container" id="div-input-3">
+                    <a href="#div-result-3" class="is-hidden" id="redirect3"></a>
+
+                    <div class="columns" id="skills-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch3" class="showcontent checkbox" />
+
+                                <label for="switch3" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5" id="title-3" contenteditable="true">Key
+                                Skills</h2>
+                            <span class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</span>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="content" id="div3">
+                        <div id="keyskill">
+                            <div id="keyskill0">
+                                <div class="is-flex mb-2">
+                                    <input type="text" id="key-skill0" name="key-skill0" class="input">
+                                    <button class="mx-2 button is-danger is-hidden"
+                                        onclick="RemoveSubSection('keyskill0','keyskill')">X</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="button is-ghost" onclick="Newsubsection('keyskill0','keyskill')">+ Add more
+                            skills</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 5 Technical Skills Input -->
+                <div class="container is-hidden" id="div-input-4" id="technicalskills-section">
+                    <a href="#div-result-4" class="is-hidden" id="redirect4"></a>
+
+                    <div class="columns" id="technical-skills-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch4" class="checkbox showcontent" />
+
+                                <label for="switch4" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-inline-block is-size-5" id="title-4"
+                                contenteditable="true">Technical
+                                Skills</h2>
+                            <i class="fa-solid fa-trash has-text-danger button is-ghost delete-button" id="delete4"></i>
+
+                            <p class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div4">
+                        <div id="technicalskill">
+                            <div id="technicalskill0">
+                                <div class="is-flex mb-2">
+                                    <input type="text" id="technical-skill0" class="input">
+                                    <button class="mx-2 button is-danger is-hidden"
+                                        onclick="RemoveSubSection('technicalskill0','technicalskill')">X</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="button is-ghost" onclick="Newsubsection('technicalskill0','technicalskill')">+
+                            Add more
+                            skills</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 6 Languages Input -->
+                <div class="container" id="div-input-5">
+                    <a href="#div-result-5" class="is-hidden" id="redirect5"></a>
+
+                    <div class="columns" id="languages-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch5" class="showcontent checkbox" />
+
+                                <label for="switch5" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5" id="title-5" contenteditable="true">Languages
+                            </h2>
+                            <span class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</span>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost customcolor"><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="content" id="div5">
+                        <div id="languages">
+                            <div id="languages0">
+                                <div class="is-flex mb-2">
+                                    <input type="text" id="known-language0" class="input">
+                                    <button class="mx-2 button is-danger is-hidden"
+                                        onclick="RemoveSubSection('languages0','languages')">X</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="button is-ghost" onclick="Newsubsection('languages0','languages')">+ Add more
+                            languages</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 7 Certifications Input -->
+                <div class="container is-hidden" id="div-input-6">
+                    <a href="#div-result-6" class="is-hidden" id="redirect6"></a>
+                    <div class="columns" id="certifications-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch6" class="showcontent checkbox" />
+
+                                <label for="switch6" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-inline-block is-size-5" id="title-6"
+                                contenteditable="true">
+                                Certifications
+                            </h2>
+                            <i class="fa-solid fa-trash has-text-danger delete-button button is-ghost" id="delete6"></i>
+                            <p class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div6">
+                        <div id="certification">
+                            <div id="certification0">
+                                <div class="columns is-hidden mt-3">
+                                    <div class="column">
+                                        <h2 class="is-size-5">Certification</h2>
+                                    </div>
+                                    <div class="column has-text-right">
+                                        <button class="button is-ghost"
+                                            onclick="RemoveSubSection('certification0','certification')">Remove</button>
+                                    </div>
+                                </div>
+
+                                <div class="columns is-multiline mb-3">
+                                    <div class="column is-6">
+                                        <span>Certification</span>
+                                        <input type="text" id="certification-name0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Certified by</span>
+                                        <input type="text" id="certification-by0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Certification Date</span>
+                                        <input type="month" id="certification-date0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Certificate URL</span>
+                                        <input type="url" id="certification-link0" class="input">
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>Description about your Certification.</span>
+                                    <div class="field">
+                                        <div class="control">
+                                            <div id="certification-description0" name="certification-description0"
+                                                class="textarea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('certification0','certification')">+
+                            Add more
+                            Certifications</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 8 Accomplishment Input -->
+                <div class="container is-hidden" id="div-input-7">
+                    <a href="#div-result-7" class="is-hidden" id="redirect7"></a>
+
+                    <div class="columns" id="accomplishments-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch7" class="showcontent checkbox" />
+
+                                <label for="switch7" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5 is-inline-block" id="title-7"
+                                contenteditable="true">Accomplishments
+                            </h2>
+                            <i class="fa-solid fa-trash delete-button has-text-danger button is-ghost" id="delete7"></i>
+                            <p class="has-text-grey">Include your educational background.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div7">
+                        <div id="accomplishment">
+                            <div id="accomplishment0" class="mb-4">
+                                <div class="columns is-hidden">
+                                    <div class="column">
+                                        <h2 class="is-size-5">Accomplishments</h2>
+                                    </div>
+                                    <div class="column has-text-right">
+                                        <button class="button is-ghost"
+                                            onclick="RemoveSubSection('accomplishment0','accomplishment')">Remove</button>
+                                    </div>
+                                </div>
+                                <div class="columns is-multiline">
+                                    <div class="column is-6">
+                                        <span>Award Name</span>
+                                        <input type="text" class="input" id="award-name0">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Awarded by</span>
+                                        <input type="text" class="input" id="awarded-by0">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Date</span>
+                                        <input type="month" class="input" id="award-date0">
+                                    </div>
+                                </div>
+                                <span>Description about your accomplishment.</span>
+                                <div class="field">
+                                    <div class="control">
+                                        <div id="award-description0" class="textarea"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('accomplishment0','accomplishment')">+
+                            Add
+                            more
+                            Accomplishments</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 9  Project Input-->
+                <div class="container is-hidden" id="div-input-8">
+                    <a href="#div-result-8" class="is-hidden" id="redirect8"></a>
+
+                    <div class="columns " id="projects-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch8" class="showcontent checkbox" />
+
+                                <label for="switch8" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold  is-inline-block is-size-5" id="title-8"
+                                contenteditable="true">Projects
+                            </h2>
+                            <i class="fa-solid fa-trash has-text-danger delete-button button is-ghost" id="delete8"></i>
+                            <p class="has-text-grey">Feel free to add whatever you want.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost customcolor "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="content" id="div8">
+                        <div id="project">
+                            <div id="project0">
+                                <div class="columns is-hidden mt-3">
+                                    <div class="column">
+                                        <h2 class="is-size-5">New Section</h2>
+                                    </div>
+                                    <div class="column has-text-right ">
+                                        <button class="button is-ghost"
+                                            onclick="RemoveSubSection('project0','project')">Remove</button>
+                                    </div>
+                                </div>
+                                <div class="columns is-multiline">
+                                    <div class="column is-6">
+                                        <span>Project Title</span>
+                                        <input id="project-name0" type="text" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Project URL</span>
+                                        <input type="url" id="project-link0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Start Date</span>
+                                        <input type="month" id="project-start0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>End Date</span>
+                                        <input type="month" id="project-end0" class="input">
+                                        <label class="toggle">
+                                            <input type="checkbox" id="current-project0" name="current-project0">
+                                            <span class="slider round">Present</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span>Write some description about the project.</span>
+                                <div class="field">
+                                    <div class="control">
+                                        <div id="project-description0" class="textarea"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="button is-ghost" onclick="Newsubsection('project0','project')">+ Add more
+                            custom sections</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 10 Hobbies Input -->
+                <div class="container" id="div-input-9">
+                    <a href="#div-result-9" class="is-hidden" id="redirect9"></a>
+                    <div class="columns" id="hobbies-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch9" class="showcontent checkbox" />
+
+                                <label for="switch9" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5" id="title-9" contenteditable="true">Hobbies
+                            </h2>
+                            <span class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</span>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost  "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div9">
+                        <div id="hobbies">
+                            <div id="hobbies0">
+                                <div class="is-flex mb-2">
+                                    <input type="text" id="hobby0" class="input">
+                                    <button class="mx-2 button is-danger is-hidden"
+                                        onclick="RemoveSubSection('hobbies0','hobbies')">X</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('hobbies0','hobbies')">+
+                            Add more Hobbies</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 11 Publications Input -->
+                <div class="container is-hidden" id="div-input-10">
+                    <a href="#div-result-10" class="is-hidden" id="redirect10"></a>
+                    <div class="columns" id="certifications-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch10" class="showcontent checkbox" />
+
+                                <label for="switch10" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-inline-block is-size-5" id="title-10"
+                                contenteditable="true">
+                                Publications</h2>
+                            <i class="fa-solid fa-trash has-text-danger button is-ghost delete-button"
+                                id="delete10"></i>
+
+                            <p class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div10">
+                        <div id="publication">
+                            <div id="publication0">
+                                <div class="columns is-hidden mt-3">
+                                    <div class="column">
+                                        <h2 class="is-size-5">Publications</h2>
+                                    </div>
+                                    <div class="column has-text-right">
+                                        <button class="button is-ghost"
+                                            onclick="RemoveSubSection('publication0','publication')">Remove</button>
+                                    </div>
+                                </div>
+
+                                <div class="columns is-multiline mb-3">
+                                    <div class="column is-6">
+                                        <span>Publication on</span>
+                                        <input type="text" id="publication-name0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Publication Details</span>
+                                        <input type="text" id="publication-details0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Publication Date</span>
+                                        <input type="month" id="publication-date0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Publication URL</span>
+                                        <input type="url" id="publication-link0" class="input">
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>Description about your Publication.</span>
+                                    <div class="field">
+                                        <div class="control">
+                                            <div id="publication-description0" name="publication-description0"
+                                                class="textarea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('publication0','publication')">+
+                            Add more Publications</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 12 Research Input -->
+                <div class="container is-hidden" id="div-input-11">
+                    <a href="#div-result-11" class="is-hidden" id="redirect11"></a>
+                    <div class="columns" id="personal-info-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch11" class="showcontent checkbox" />
+
+                                <label for="switch11" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-inline-block is-size-5" id="title-11"
+                                contenteditable="true">Research
+                            </h2>
+                            <i class="fa-solid fa-trash has-text-danger button is-ghost delete-button"
+                                id="delete11"></i>
+
+                            <p class="has-text-grey">Highlight your key skills and areas of expertise to demonstrate
+                                your strengths and competencies.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div11">
+                        <div id="research">
+                            <div id="research0">
+                                <div class="columns is-hidden mt-3">
+                                    <div class="column">
+                                        <h2 class="is-size-5">Research</h2>
+                                    </div>
+                                    <div class="column has-text-right">
+                                        <button class="button is-ghost"
+                                            onclick="RemoveSubSection('research0','research')">Remove</button>
+                                    </div>
+                                </div>
+
+                                <div class="columns is-multiline mb-3">
+                                    <div class="column is-6">
+                                        <span>Research on</span>
+                                        <input type="text" id="research-name0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Subtitle</span>
+                                        <input type="text" id="research-details0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Research Stared Date</span>
+                                        <input type="month" id="research-start-date0" class="input">
+                                    </div>
+                                    <div class="column is-6">
+                                        <span>Research End Date</span>
+                                        <input type="month" id="research-end-date0" class="input">
+                                        <label class="toggle">
+                                            <input type="checkbox" id="current-research0" name="current-research0">
+                                            <span class="slider round"> Present</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>Description about your Research.</span>
+                                    <div class="field">
+                                        <div class="control">
+                                            <div id="research-description0" name="research-description0"
+                                                class="textarea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-ghost" onclick="Newsubsection('research0','research')">+
+                            Add more Researchs</button>
+                        <hr>
+                    </div>
+                </div>
+                <!-- 13 Custom Section Input-->
+                <div id="additional-section-container">
+                    <div class="container is-hidden" id="div-input-12">
+                        <a href="#div-result-12" class="is-hidden" id="redirect12"></a>
+                        <div class="columns" id="custom-section">
+                            <div
+                                class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                                <div>
+                                    <input type="checkbox" checked id="switch12" class="checkbox showcontent" />
+
+                                    <label for="switch12" class="toggle-checkbox">
+                                </div>
+
+                            </div>
+                            <div class="column">
+                                <h2 class="has-text-weight-semibold is-inline-block is-size-5" contenteditable="true"
+                                    id="title-12">
+                                    Custom
+                                    Section
+                                </h2>
+                                <i class="fa-solid fa-trash has-text-danger button is-ghost delete-button"
+                                    id="delete12"></i>
+                                <p class="has-text-grey">Feel free to add whatever you want.</p>
+                            </div>
+                            <div class="column has-text-right is-2">
+                                <button class="has-text-weight-bold button collapse is-ghost customcolor "><i
+                                        class="fa-solid fa-angle-up"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="content" id="div12">
+                            <div id="additional">
+                                <div id="additional0">
+                                    <div id="additional-section0">
+                                        <div class="columns is-hidden">
+                                            <div class="column">
+                                                <h2 class="is-size-5">New Section</h2>
+                                            </div>
+                                            <div class="column has-text-right ">
+                                                <button class="button is-ghost"
+                                                    onclick="RemoveSubSection('additional0','additional')">Remove</button>
+                                            </div>
+                                        </div>
+                                        <div class="columns">
+                                            <div class="column"><span>Title</span>
+                                                <input type="text" id="additional-section-title0" class="input">
+                                            </div>
+                                            <div class="column"><span>Content</span>
+                                                <input type="text" id="additional-section-content0" class="input">
+                                            </div>
+                                        </div>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <div id="additional-description0" class="textarea"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="button is-ghost" onclick="Newsubsection('additional0','additional')">+ Add
+                                more
+                                custom sections</button>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <!-- 14 Declaration Input -->
+                <div class="container is-hidden" id="div-input-13">
+                    <a href="#div-result-13" class="is-hidden" id="redirect13"></a>
+                    <div class="columns" id="certifications-section">
+                        <div
+                            class="column is-flex is-justify-content-center is-align-items-center flex-wrap-nowrap is-1 mx-2">
+                            <div>
+                                <input type="checkbox" checked id="switch13" class="checkbox showcontent" />
+                                <label for="switch13" class="toggle-checkbox">
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5 is-inline-block" id="title-13"
+                                contenteditable="true">
+                                Declaration</h2>
+                            <i class="fa-solid fa-trash has-text-danger button is-ghost delete-button"
+                                id="delete13"></i>
+                            <p class="has-text-grey">A Declaration about Information.</p>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button collapse is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content" id="div13">
+                        <div id="declaration" class="mb-5">
+                            <div class="field">
+                                <div class="control">
+                                    <div id="declaration-description" class="textarea"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional Sections -->
+                <div class="container" draggable="false" style="position: relative;" id="additional-content-container">
+                    <div class="columns " id="additional-section">
+                        <div class="column">
+                            <h2 class="has-text-weight-semibold is-size-5">Add additional Section</h2>
+                            <span class="has-text-grey">Customize your resume by adding additional sections as per
+                                your requirements</span>
+                        </div>
+                        <div class="column has-text-right is-2">
+                            <button class="has-text-weight-bold button  is-ghost "><i
+                                    class="fa-solid fa-angle-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="columns is-multiline mt-4">
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button
+                                    class="button additional has-text-weight-bold  is-ghost has-text-black is-normal"
+                                    onclick="AddAdditionalSection(10)" id="additional-10"><i
+                                        class="fa-solid fa-book mr-2"></i>Publications</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button
+                                    class="button additional has-text-weight-bold  is-ghost has-text-black is-normal"
+                                    onclick="AddAdditionalSection(4)" id="additional-4"><i
+                                        class="fa-solid fa-lightbulb mr-2"></i>Technical Skills</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button
+                                    class="button additional has-text-weight-bold  is-ghost has-text-black is-normal"
+                                    id="additional-6" onclick="AddAdditionalSection(6)"><i
+                                        class="fa-solid fa-certificate mr-2"></i>Certifications</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button class="button additional has-text-weight-bold is-ghost has-text-black is-normal"
+                                    id="additional-8" onclick="AddAdditionalSection(8)"><i
+                                        class="fa-brands fa-uncharted mr-2"></i>Projects</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button
+                                    class="button additional has-text-weight-bold  is-ghost has-text-black is-normal"
+                                    id="additional-7" onclick="AddAdditionalSection(7)"><i
+                                        class="fa-solid fa-star mr-2"></i>Milestones</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button
+                                    class="button additional has-text-weight-bold  is-ghost has-text-black is-normal"
+                                    onclick="AddAdditionalSection(11)" id="additional-11"><i
+                                        class="fa-brands fa-searchengin mr-2"></i>Research</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button class="button additional is-ghost has-text-weight-bold has-text-black is-normal"
+                                    onclick="AddAdditionalSection(13)" id="additional-13">Declaration</button>
+                            </div>
+                            <div class="column is-flex is-justify-content-center is-align-items-center is-4">
+                                <button class="button additional is-ghost has-text-weight-bold has-text-black is-normal"
+                                    id="additional-12">
+                                    Custom Section</button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <!-- Custom Section Title Input -->
+                    <div class="card has-background-link-light is-hidden" id="custom-title-input">
+                        <div class="has-text-right"><button class="button is-danger is-small"
+                                id="close-section">X</button></div>
+                        <div class="card-content">
+                            <h2 class="has-text-weight-bold">Enter Name for the Section to Create :</h2>
+                            <input type="text" class="input" id="section-name">
+                            <div class="has-text-right">
+                                <button class="is-success button mt-3" id="create-section">Create <strong>
+                                        +</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Resume Result Container -->
+            <div id="preview" class="column is-6 box mr-5 pb-3 has-background-light" style="border: 2px solid black;">
+                <div class="preview-container has-background-white pb-5" id="resultdata-container">
+                    <!-- 1 User Personal Information Result -->
+                    <div id="profile" class="custombackgroundColor px-3">
+                        <div class="columns">
+                            <div class="column is-2" id="imagecontainer">
+                                <figure class="image is-96x96 mt-3">
+                                    <img class="is-rounded" id="userimage-result"
+                                        src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png">
+                                </figure>
+                            </div>
+                            <div class="column mt-3">
+                                <h2 class="title m-0 is-3 has-text-white has-text-weight-semibold" style="width: 300px;"
+                                    id="name-result">
+                                   YOUR NAME 
+                                </h2>
+                                <span class="is-size-5 has-text-white has-text-weight-semibold"
+                                    id="profile-job-title-result">JOB TITLE</span>
+                            </div>
+                            <div class="column is-5 is-flex is-justify-content-end px-5 has-text-white">
+                                <div class="mt-3">
+                                    <span></span>
+                                    <p id="address-result"><i class="fa-solid fa-house mr-2"></i> <span>YOUR ADDRESS
+                                            </span></p>
+                                    <p id="email-result"><i
+                                            class="fa-solid fa-envelope mr-2"></i>abc@gmail.com
+                                    </p>
+
+                                    <p id="phone-result"><span class="has-text-weight-semibold"><i
+                                                class="fa-solid fa-phone mr-2"></i></span>
+                                        <span>+91 1234567890</span>
+                                    </p>
+                                    <div id="social-result">
+                                        <div id="social-result0">
+                                            <p>
+                                                <span id="social-link-for-result0" class="has-text-weight-semibold">
+                                                </span>
+                                                <a id="social-link-result0" class="has-text-light"
+                                                    href="https://github.com/shubhamsomwanshi11"><span
+                                                        id="texttoshow-result0"></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="has-text-white" id="user-description-result">Lorem ipsum dolor sit amet
+                             Bharat</p>
+                    </div>
+                    <div class="px-3" id="userdetails-result">
+                        <!-- 2 Proffesional Information Result -->
+                        <div class="mt-1 divsection" id="div-result-1">
+                            <h2 class="has-text-weight-semibold customcolor is-size-4" id="title-result-1">Proffesional
+                                Experience</h2>
+                            <div id="proffesional-result" class="mb-3">
+                                <div id="proffesional-result0" class="mb-3">
+                                    <div class="columns">
+                                        <div class="column  is-5">
+                                            <h2 class="has-text-weight-semibold is-size-5" id="job-title-result0">Full
+                                                Stack
+                                                Developer</h2>
+                                            <p><span id="compony-result0">Jim's Widget Factory</span><span
+                                                    id="job-start-date-result0">| January
+                                                    2016</span> <span id="job-end-date-result0">- Present</span> </p>
+                                        </div>
+                                        <div class="column">
+                                            <div id="job-description-result0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="custombackgroundColor">
+                        </div>
+                        <!-- 3 Educational Information Result -->
+                        <div class="divsection" id="div-result-2">
+                            <div id="educational-result">
+                                <h2 class="has-text-weight-semibold is-size-4 customcolor" id="title-result-2">Education
+                                </h2>
+                                <div id="educational-result0">
+                                    <div class="columns">
+                                        <div class="column is-5">
+                                            <div id="degree">
+                                                <h2 class="has-text-weight-semibold is-size-5"
+                                                    id="institute-education-result0">
+                                                    SSC
+                                                </h2>
+                                                <span id="institute-grade-result0">88.34%</span>
+                                                <span id="institute-name-result0">from NHSL </span>
+                                                <span id="institute-location-result0">at Vaijapur</span>
+                                                <span id="institute-start-date-result0">| 14 Feb </span><span
+                                                    id="institute-end-date-result0">Present</span>
+                                            </div>
+                                        </div>
+                                        <div class="column" id="institute-description-result0">
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+                                                possimus?
+                                            </li>
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+                                                possimus?
+                                            </li>
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+                                                possimus?
+                                            </li>
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+                                                possimus?
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="custombackgroundColor">
+                        </div>
+                        <!-- 4 Key Skills Result -->
+                        <div class="divsection" id="div-result-3">
+                            <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-3">
+                                Key Skills
+                            </h2>
+                            <div class="columns">
+                                <div class="column is-5">
+                                </div>
+                                <div id="keyskill-result" class="column">
+                                    <div id="keyskill-result0">
+                                        <li>Nothing</li>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="custombackgroundColor">
+                        </div>
+                        <!-- 5 Technical Skills Result -->
+                        <div class="divsection is-hidden" id="div-result-4">
+                            <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-4">
+                                Technical Skills
+                            </h2>
+                            <div class="columns">
+                                <div class="column is-5">
+                                </div>
+                                <div id="technicalskill-result" class="column">
+                                    <div id="technicalskill-result0">
+                                        <li>Nothing</li>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="custombackgroundColor">
+                        </div>
+                        <!-- 6 Languages Result -->
+                        <div class="divsection" id="div-result-5">
+                            <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-5">
+                                Languages
+                            </h2>
+                            <div class="columns">
+                                <div class="column is-5">
+
+                                </div>
+                                <div id="languages-result" class="column">
+                                    <div id="languages-result0">
+                                        <li>English</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 7 Certification Result -->
+                        <div class="divsection is-hidden" id="div-result-6">
+                            <hr class="custombackgroundColor">
+                            <div id="certification-result">
+                                <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-6">
+                                    Certifications
+                                </h2>
+                                <div id="certification-result0">
+                                    <div class="columns">
+                                        <div class="column is-5">
+                                            <h2 class="has-text-weight-semibold is-size-5"
+                                                id="certification-name-result0">
+                                                Foundations of Project Management
+                                            </h2>
+                                            <span class="has-text-grey" id="certification-by-result0">Coursera</span>
+                                            <span class="has-text-grey" id="certification-date-result0">| Jul
+                                                2022</span>
+                                            <br>
+                                            <a href="" target="_blank" rel="noopener"
+                                                id="certification-link-result0">View Certificate</a>
+                                        </div>
+                                        <div class="column">
+                                            <div id="certification-description-result0">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio
+                                                aspernatur
+                                                nulla alias eaque beatae sint obcaecati.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 8 Accomplishment Result -->
+                        <div class="divsection is-hidden" id="div-result-7">
+                            <hr class="custombackgroundColor">
+                            <div id="accomplishment-result">
+                                <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-7">
+                                    Accomplishments
+                                </h2>
+                                <div id="accomplishment-result0">
+                                    <div class="columns">
+                                        <div class="column is-5">
+                                            <h2 class="has-text-weight-semibold is-size-5" id="award-result0">
+                                                Padmabhushan
+                                            </h2>
+                                            <span class="has-text-grey" id="award-date-result0"></span>
+                                        </div>
+                                        <div class="column">
+                                            <div id="award-description-result0">
+                                                Kaffi difficult tareh ka award hai bohot kam logo ko milta hai ye
+                                                taufa..
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 9 Project Result -->
+                        <div class="divsection is-hidden" id="div-result-8">
+                            <hr class="custombackgroundColor">
+                            <div id="project-result">
+                                <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-8">
+                                    Projects
+                                </h2>
+                                <div id="project-result0">
+                                    <div class="columns">
+                                        <div class="column is-5">
+                                            <h2 class="has-text-weight-semibold is-size-5" id="project-name-result0">
+                                                Billing and Stock Management System
+                                            </h2>
+                                            <span class="has-text-grey" id="project-date-result0">June 2021 - Jul
+                                                2022</span>
+                                            <br>
+                                            <a href="" target="_blank" rel="noopener" id="project-link-result0">View
+                                                Project</a>
+                                        </div>
+                                        <div class="column">
+                                            <div id="project-description-result0">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio
+                                                aspernatur
+                                                nulla alias eaque beatae sint obcaecati.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 10 Hobbies Result -->
+                        <div class="divsection" id="div-result-9">
+                            <hr class="custombackgroundColor">
+                            <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-9">
+                                Hobbies
+                            </h2>
+                            <div class="columns">
+                                <div class="column is-5">
+
+                                </div>
+                                <div id="hobbies-result" class="column">
+                                    <div id="hobbies-result0">
+                                        <li>English</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 11 Publications Result -->
+                        <div class="divsection is-hidden" id="div-result-10">
+                            <hr class="custombackgroundColor">
+                            <div id="publication-result">
+                                <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-10">
+                                    Publications
+                                </h2>
+                                <div id="publication-result0">
+                                    <div class="columns">
+                                        <div class="column is-5">
+                                            <h2 class="has-text-weight-semibold is-size-5"
+                                                id="publication-name-result0">
+                                                Billing and Stock Management
+                                            </h2>
+                                            <span class="has-text-grey" id="publication-by-result0">Coursera</span>
+                                            <span class="has-text-grey" id="publication-date-result0">| Jul
+                                                2022</span>
+                                            <br>
+                                            <a href="" target="_blank" rel="noopener" id="publication-link-result0">View
+                                                Certificate</a>
+                                        </div>
+                                        <div class="column">
+                                            <div id="publication-description-result0">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio
+                                                aspernatur
+                                                nulla alias eaque beatae sint obcaecati.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 11 Research Result -->
+                        <div class="divsection is-hidden" id="div-result-11">
+                            <hr class="custombackgroundColor">
+                            <div id="research-result">
+                                <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-11">
+                                    Research
+                                </h2>
+                                <div id="research-result0">
+                                    <div class="columns">
+                                        <div class="column is-5">
+                                            <h2 class="has-text-weight-semibold is-size-5" id="research-name-result0">
+                                                Billing and Stock Management
+                                            </h2>
+                                            <span class="has-text-grey" id="research-by-result0">Coursera</span>
+                                            <span class="has-text-grey" id="research-date-result0">| Jul
+                                                2022</span>
+                                        </div>
+                                        <div class="column">
+                                            <div id="research-description-result0">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio
+                                                aspernatur
+                                                nulla alias eaque beatae sint obcaecati.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 12 Additional Section Result -->
+                        <div id="additional-section-result-container">
+                            <div class="divsection is-hidden" id="div-result-12">
+                                <hr class="custombackgroundColor">
+                                <div id="additional-result">
+                                    <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-12">
+                                        Custom Section
+                                    </h2>
+                                    <div id="additional-result0">
+                                        <div class="columns ">
+                                            <div class="column is-5">
+                                                <h2 class="has-text-weight-semibold is-size-5"
+                                                    id="additional-section-title-result0">
+                                                    Custom Title
+                                                </h2>
+                                                <span class="has-text-grey"
+                                                    id="additional-section-content-result0"></span>
+                                            </div>
+                                            <div class="column">
+                                                <div id="additional-section-description-result0">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
+                                                    porro
+                                                    molestiae.
+                                                </div>
+                                            </div>
+                                        </div>e \
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 13 Declaration Result -->
+                        <div class="divsection is-hidden" id="div-result-13">
+                            <hr class="custombackgroundColor">
+                            <div id="declaration">
+                                <h2 class="customcolor is-size-4 has-text-weight-semibold" id="title-result-13">
+                                    Declaration
+                                </h2>
+                                <p class="mt-3" id="declaration-text">I Shubham Namdev Somwanshi declare that all the
+                                    above information is
+                                    correct and i will be responsible if found any mistake in the information.</p>
+                            </div>
+                            <div class="is-flex is-justify-content-end mt-5 pt-5">
+                                <h2 id="declaration-user-name" class="px-5 has-text-weight-semibold"
+                                    style="width: 250px; text-align: center;">Somwanshi Shubham Namdev</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-floating pb-3 pt-3">
+            <div class="columns">
+                <div class="column is-4">
+                    <button class="button is-link is-rounded" id="templates"><i class="fa-solid fa-file mr-2"></i>
+                        Templates</button>
+                    <button class="button is-rounded is-info" onclick="TogglePreview()" id="preview-button">Hide
+                        Preview</button>
+                </div>
+                <div class="column is-4">
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-primary is-rounded" id="theme-btn">
+                                <i class="fas fa-palette mr-2"></i>Theme
+                            </button>
+                        </div>
+                        <div class="control">
+                            <button class="button is-primary is-rounded" id="font-btn">
+                                <i class="fas fa-font mr-2"></i>Font
+                            </button>
+                        </div>
+                        <div class="control">
+                            <button class="button is-info is-rounded" id="analyze-btn">
+                                <i class="fas fa-chart-line mr-2"></i>Analyze
+                            </button>
+                        </div>
+                        <div class="control">
+                            <input type="color" name="" id="colorpicker" class="input is-inline-block">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <button class="button is-link is-rounded" onclick="showPreview()">Preview</button>
+                    <button class="button is-link is-rounded" id="download-btn">Download</button>
+                </div>
+            </div>
+        </div>
+        <div id="notification-placeholder"></div>
+    </section>
+</body>
+
+</html>

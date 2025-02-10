@@ -1,0 +1,857 @@
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease;
+}
+
+.collapsed {
+    max-height: none !important;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.preview ::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.preview-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 80vh;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.406);
+}
+
+@media print {
+    .preview-container {
+        overflow-y: none;
+        overflow-x: none;
+        height: auto;
+        box-shadow: none;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Personal Information */
+#personal-info-section {
+    border-top: 3px solid #1abc9c;
+    border-radius: 7px;
+}
+
+/* Professional Experience */
+#experience-section {
+    border-radius: 7px;
+    border-top: 3px solid #2980b9;
+}
+
+/* Education */
+#education-section {
+    border-radius: 7px;
+    border-top: 3px solid #f39c12;
+}
+
+/* Key Skills */
+#skills-section {
+    border-radius: 7px;
+    border-top: 3px solid #9b59b6;
+}
+
+/* Technical Skills */
+#technical-skills-section {
+    border-radius: 7px;
+    border-top: 3px solid #27ae60;
+}
+
+/* Languages */
+#languages-section {
+    border-radius: 7px;
+    border-top: 3px solid #e74c3c;
+}
+
+/* Certifications */
+#certifications-section {
+    border-top: 3px solid #3498db;
+    border-radius: 7px;
+}
+
+/* Accomplishments */
+#accomplishments-section {
+    border-radius: 7px;
+    border-top: 3px solid #f1c40f;
+}
+
+/* Projects */
+#projects-section {
+    border-radius: 7px;
+    border-top: 3px solid #16a085;
+}
+
+/* Hobbies */
+#hobbies-section {
+    border-radius: 7px;
+    border-top: 3px solid #e67e22;
+}
+
+/* Custom Section */
+#custom-section {
+    border-radius: 7px;
+    border-top: 3px solid #c0392b;
+}
+
+#additional-section {
+    border-top: 3px solid #555555;
+    border-radius: 7px;
+}
+
+.collapse {
+    position: absolute;
+    top: 10px;
+    left: 90%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+@media print {
+    body * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.customborderColor {
+    border-top: 1px solid #2f8d46;
+}
+
+.customcolor {
+    color: #2f8d46;
+}
+
+.custombackgroundColor {
+    background-color: #2f8d46;
+}
+
+.bottom-floating {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.616);
+}
+
+.fixed-below {
+    position: fixed;
+    top: 10%;
+    width: 100%;
+}
+
+.scroller {
+    height: 85vh;
+    overflow-y: scroll;
+}
+
+.preview-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 90vh;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 99999;
+}
+
+/* Styling for the overlay background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 9998;
+    display: none;
+}
+
+.show-overlay {
+    display: block;
+}
+
+/* Styling toggle button */
+.toggle-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    background-color: white;
+    border-radius: 30px;
+    border: 1px solid grey;
+}
+
+/* After slide changes */
+.toggle-checkbox:after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #0091ff;
+    bottom: 1px;
+    left: 1px;
+    transition: all 0.5s;
+}
+
+/* Checkbox checked effect */
+.checkbox:checked+.toggle-checkbox::after {
+    left: 15px;
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked+.toggle-checkbox {
+    background-color: white;
+}
+
+/* Checkbox vanished */
+.checkbox {
+    display: none;
+}
+
+.centered-notification {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+}
+
+.collapse i {
+    /* font-size: 24px; */
+    margin: auto;
+}
+
+#custom-title-input {
+    width: 70%;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .box,
+.dark-mode .card,
+.dark-mode .navbar,
+.dark-mode .preview-container,
+.dark-mode .bottom-floating {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark-mode .input,
+.dark-mode .textarea,
+.dark-mode .select select {
+    background-color: #3d3d3d;
+    color: #ffffff;
+    border-color: #4d4d4d;
+}
+
+.dark-mode .has-text-grey {
+    color: #b0b0b0 !important;
+}
+
+.dark-mode .button.is-ghost {
+    color: #ffffff;
+}
+
+.dark-mode .preview-window {
+    background-color: #2d2d2d;
+    border-color: #4d4d4d;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Download modal styles */
+.modal-card {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.modal-card-body .field {
+    margin-bottom: 1rem;
+}
+
+/* Format-specific preview styles */
+.format-pdf .preview-container {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 0 auto;
+}
+
+.format-docx .preview-container {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 1in;
+    margin: 0 auto;
+}
+
+/* PDF print styles */
+@media print {
+  .preview-container {
+    width: 210mm;
+    padding: 20mm;
+    margin: 0;
+  }
+
+  .preview-container * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .preview-container img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* PDF preview container */
+.pdf-preview {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: auto;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2f8d46;
+  --background-color: #ffffff;
+  --text-color: #4a4a4a;
+  --header-bg: #2f8d46;
+  --header-text: #ffffff;
+  --section-title: #2f8d46;
+  --border-color: #dbdbdb;
+  --primary-font: Calibri, sans-serif;
+}
+
+/* Update existing styles to use CSS variables */
+body {
+  font-family: var(--primary-font);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.customcolor {
+  color: var(--primary-color);
+}
+
+.custombackgroundColor {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+}
+
+.customborderColor {
+  border-top: 1px solid var(--border-color);
+}
+
+/* Theme and font preview styles */
+.theme-preview, .font-preview {
+  transition: transform 0.2s;
+}
+
+.theme-preview:hover, .font-preview:hover {
+  transform: scale(1.02);
+}
+
+/* Compression dialog styles */
+.compression-dialog .modal-card {
+    max-width: 500px;
+}
+
+.compression-dialog .progress {
+    margin-top: 1rem;
+}
+
+.compression-dialog .file-name {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.compression-dialog .checkbox {
+    display: inline-flex;
+    align-items: center;
+}
+
+.compression-dialog .checkbox input {
+    margin-right: 0.5rem;
+}
+
+/* Progress bar animation */
+@keyframes progress-animation {
+    0% { background-position: 100% 0; }
+    100% { background-position: 0 0; }
+}
+
+.progress.is-primary::-webkit-progress-value {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255,255,255,.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,.15) 50%,
+        rgba(255,255,255,.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+    animation: progress-animation 1s linear infinite;
+}
+
+/* Menu buttons styling */
+.menu-list .buttons {
+    padding: 0.5rem;
+}
+
+.menu-list .button {
+    justify-content: left;
+    text-align: left;
+    height: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.menu-list .button:hover {
+    transform: translateX(5px);
+}
+
+.menu-list hr {
+    margin: 1rem 0;
+    background-color: #dbdbdb;
+}
+
+/* Menu styling improvements */
+.menu-list {
+    padding: 0.5rem;
+}
+
+.menu-list a {
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+}
+
+.menu-list a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.menu-list a.is-active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.menu-list i {
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+.menu-list .delete-button {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.menu-list .delete-button:hover {
+    opacity: 1;
+}
+
+/* Section headers */
+.menu-label {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Menu container */
+.menu {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Add to your existing menu styling */
+.menu-list a .tag {
+    float: right;
+    font-size: 0.7rem;
+    height: 1.5em;
+    padding: 0.2em 0.5em;
+    margin-top: 0.1em;
+}
+
+.menu-list a:hover .tag {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Animation for the "New" tag */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.menu-list .tag.is-info {
+    animation: pulse 2s infinite;
+}
+
+/* Interview prep styles */
+.modal-card {
+    max-width: 90vw !important;
+}
+
+#questions-container .box {
+    transition: all 0.3s ease;
+}
+
+#questions-container .box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.answer-content {
+    margin-top: 1rem;
+}
+
+.toggle-answer {
+    transition: all 0.3s ease;
+}
+
+.toggle-answer:hover {
+    transform: translateX(5px);
+}
+
+.notification ul {
+    margin-left: 1rem;
+}
+
+/* Share modal styles */
+.share-modal .modal-card {
+    max-width: 500px;
+}
+
+.share-modal .buttons {
+    justify-content: center;
+}
+
+.share-modal .button {
+    margin: 0.5rem;
+    min-width: 120px;
+}
+
+#qr-code {
+    margin: 1rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.share-modal .icon.is-right {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.share-modal .icon.is-right:hover {
+    color: var(--primary-color);
+}
+
+/* Template selection styles */
+.templates-grid {
+    gap: 1.5rem;
+}
+
+.template-card {
+    border: 2px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
+}
+
+.template-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.template-info {
+    padding: 1rem;
+    text-align: center;
+}
+
+.template-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* Template specific styles will be in separate CSS files */
+
+/* Add these styles for menu animations */
+#menubuttons {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#menubuttons.menu-open {
+    max-height: 1000px; /* Adjust based on your menu height */
+}
+
+/* Add slide and fade effects to menu items */
+#menubuttons li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+    transition-delay: calc(var(--item-index) * 0.1s);
+}
+
+#menubuttons.menu-open li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Add hover effects */
+.menu-list a {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-list a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.menu-list a:hover::before {
+    width: 100%;
+}
+
+/* Add active state animation */
+.menu-list a.is-active {
+    background: linear-gradient(
+        to right,
+        var(--primary-color) 0%,
+        var(--primary-color) 100%
+    );
+    background-size: 200% auto;
+    animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+/* Add collapse/expand icon animation */
+.menu-list .collapse i {
+    transition: transform 0.3s ease;
+}
+
+.menu-list .collapse.is-collapsed i {
+    transform: rotate(-180deg);
+}
+
+/* Add ripple effect on click */
+.menu-list a {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-list a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.menu-list a:active::after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}
+
+/* Improve scrollbar styling */
+.menu {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+
+.menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* Add these sidebar animation styles */
+.menu {
+    width: 230px;
+    transition: width 0.3s ease, transform 0.3s ease;
+    overflow-x: hidden;
+}
+
+.menu.collapsed {
+    width: 60px;
+    transform: translateX(-170px);
+}
+
+.menu.collapsed .menu-list span,
+.menu.collapsed .menu-label {
+    opacity: 0;
+}
+
+.menu-list span,
+.menu-label {
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Adjust icon positioning for collapsed state */
+.menu.collapsed .menu-list i {
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Add hover effect for collapsed state */
+.menu.collapsed:hover {
+    width: 230px;
+    transform: translateX(0);
+}
+
+.menu.collapsed:hover .menu-list span,
+.menu.collapsed:hover .menu-label {
+    opacity: 1;
+}
+
+/* Add toggle button */
+.menu-toggle {
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.menu.collapsed .menu-toggle {
+    transform: rotate(180deg);
+}
